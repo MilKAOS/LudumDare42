@@ -2,39 +2,31 @@
 using UnityEngine;
 
 public class ClickManager : MonoBehaviour
-{    
-    public Sprite rover1Sprite;
+{       
     public Sprite rover1SpriteWreck1;
     public Sprite rover1SpriteWreck2;
-    public Sprite rover1SpriteWreck3;
-    public Sprite rover2Sprite;
+    public Sprite rover1SpriteWreck3;    
     public Sprite rover2SpriteWreck1;
     public Sprite rover2SpriteWreck2;
-    public Sprite rover2SpriteWreck3;
-    public Sprite rover3Sprite;
+    public Sprite rover2SpriteWreck3;    
     public Sprite rover3SpriteWreck1;
     public Sprite rover3SpriteWreck2;
-    public Sprite rover3SpriteWreck3;
-    public Sprite rocketSprite;
+    public Sprite rover3SpriteWreck3;    
     public Sprite rocketSpriteWreck1;
     public Sprite rocketSpriteWreck2;
     public Sprite rocketSpriteWreck3;
 
     void Start()
     {
-        rover1Sprite = Resources.Load<Sprite>("Sprites/opportunity_front_512");
         rover1SpriteWreck1 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-1");
         rover1SpriteWreck2 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-2");
         rover1SpriteWreck3 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-3");
-        rover2Sprite = Resources.Load<Sprite>("Sprites/pathfinder_side_512");
         rover2SpriteWreck1 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-1");
         rover2SpriteWreck2 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-2");
         rover2SpriteWreck3 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-3");
-        rover3Sprite = Resources.Load<Sprite>("Sprites/spirit_front_512");
         rover3SpriteWreck1 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-1");
         rover3SpriteWreck2 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-2");
         rover3SpriteWreck3 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-3");
-        rocketSprite = Resources.Load<Sprite>("Sprites/falcon9_512");
         rocketSpriteWreck1 = Resources.Load<Sprite>("Sprites/falcon9_128_w-1");
         rocketSpriteWreck2 = Resources.Load<Sprite>("Sprites/falcon9_128_w-2");
         rocketSpriteWreck3 = Resources.Load<Sprite>("Sprites/falcon9_128_w-3");
@@ -57,6 +49,7 @@ public class ClickManager : MonoBehaviour
                     GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
+                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("rover2_"))
                 {
@@ -66,6 +59,7 @@ public class ClickManager : MonoBehaviour
                     GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
+                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("rover3_"))
                 {
@@ -75,6 +69,7 @@ public class ClickManager : MonoBehaviour
                     GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
+                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("rocket_"))
                 {
@@ -84,11 +79,13 @@ public class ClickManager : MonoBehaviour
                     GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
+                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("part_"))
                 {
                     GameManager.Score(1);
                     Destroy(this.gameObject);
+                    DoExplosion(pos);
                 }                
             }
         }
@@ -126,5 +123,62 @@ public class ClickManager : MonoBehaviour
         transform.position = new Vector2(pos.x, -6);
 
         rigidbody2D.velocity = new Vector2(xVel, yVel);
+    }
+
+    private void DoExplosion(Vector3 pos)
+    {
+        var rnd = UnityEngine.Random.Range(1, 15);
+        var effectName = "";
+
+        switch (rnd)
+        {
+            case 1:
+                effectName = "Effects/WFX_Explosion";
+                break;
+            case 2:
+                effectName = "Effects/WFX_Explosion LandMine";
+                break;
+            case 3:
+                effectName = "Effects/WFX_Explosion Simple";
+                break;
+            case 4:
+                effectName = "Effects/WFX_Explosion Small";
+                break;
+            case 5:
+                effectName = "Effects/WFX_Explosion StarSmoke";
+                break;
+            case 6:
+                effectName = "Effects/WFX_ExplosiveSmoke";
+                break;
+            case 7:
+                effectName = "Effects/WFX_ExplosiveSmoke Big";
+                break;
+            case 8:
+                effectName = "Effects/WFX_ExplosiveSmoke Big Alt";
+                break;
+            case 9:
+                effectName = "Effects/WFX_ExplosiveSmoke Small";
+                break;
+            case 10:
+                effectName = "Effects/WFX_ExplosiveSmokeGround";
+                break;
+            case 11:
+                effectName = "Effects/WFX_ExplosiveSmokeGround Big";
+                break;
+            case 12:
+                effectName = "Effects/WFX_ExplosiveSmokeGround Big Alt";
+                break;
+            case 13:
+                effectName = "Effects/WFX_ExplosiveSmokeGround Small";
+                break;
+            case 14:
+                effectName = "Effects/WFX_Nuke";
+                break;            
+        }
+
+        var effect = Resources.Load<GameObject>(effectName);
+        effect.transform.position = pos;
+        Instantiate(effect);
+        Destroy(effect, 5f);
     }
 }

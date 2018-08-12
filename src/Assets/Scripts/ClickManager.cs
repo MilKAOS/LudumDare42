@@ -4,16 +4,40 @@ using UnityEngine;
 public class ClickManager : MonoBehaviour
 {    
     public Sprite rover1Sprite;
+    public Sprite rover1SpriteWreck1;
+    public Sprite rover1SpriteWreck2;
+    public Sprite rover1SpriteWreck3;
     public Sprite rover2Sprite;
+    public Sprite rover2SpriteWreck1;
+    public Sprite rover2SpriteWreck2;
+    public Sprite rover2SpriteWreck3;
     public Sprite rover3Sprite;
+    public Sprite rover3SpriteWreck1;
+    public Sprite rover3SpriteWreck2;
+    public Sprite rover3SpriteWreck3;
     public Sprite rocketSprite;
+    public Sprite rocketSpriteWreck1;
+    public Sprite rocketSpriteWreck2;
+    public Sprite rocketSpriteWreck3;
 
     void Start()
     {
-        rover1Sprite = Resources.Load<Sprite>("Sprites/opportunity_front_512");        
+        rover1Sprite = Resources.Load<Sprite>("Sprites/opportunity_front_512");
+        rover1SpriteWreck1 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-1.png");
+        rover1SpriteWreck2 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-2.png");
+        rover1SpriteWreck3 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-3.png");
         rover2Sprite = Resources.Load<Sprite>("Sprites/pathfinder_side_512");
+        rover2SpriteWreck1 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-1.png");
+        rover2SpriteWreck2 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-2.png");
+        rover2SpriteWreck3 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-3.png");
         rover3Sprite = Resources.Load<Sprite>("Sprites/spirit_front_512");
+        rover3SpriteWreck1 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-1.png");
+        rover3SpriteWreck2 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-2.png");
+        rover3SpriteWreck3 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-3.png");
         rocketSprite = Resources.Load<Sprite>("Sprites/falcon9_512");
+        rocketSpriteWreck1 = Resources.Load<Sprite>("Sprites/falcon9_128_w-1.png");
+        rocketSpriteWreck2 = Resources.Load<Sprite>("Sprites/falcon9_128_w-2.png");
+        rocketSpriteWreck3 = Resources.Load<Sprite>("Sprites/falcon9_128_w-3.png");
     }
 
     void Update()

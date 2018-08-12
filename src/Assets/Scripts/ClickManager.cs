@@ -20,26 +20,33 @@ public class ClickManager : MonoBehaviour
             {
                 var pos = this.gameObject.transform.position;
 
-                switch (this.gameObject.name)
+                if (this.gameObject.name.StartsWith("rover_"))
                 {
-                    case "test_block_1":
-                        Create("part1_" + Guid.NewGuid(), pos, partSprite);
-                        Create("part2_" + Guid.NewGuid(), pos, partSprite);
-                        Create("part3_" + Guid.NewGuid(), pos, partSprite);
-                        break;
-
-                    case "test_block_2":
-                        Create("part1_" + Guid.NewGuid(), pos, partSprite);
-                        Create("part2_" + Guid.NewGuid(), pos, partSprite);
-                        break;
+                    CreatePart("part_" + Guid.NewGuid(), pos, partSprite);
+                    CreatePart("part_" + Guid.NewGuid(), pos, partSprite);
+                    CreatePart("part_" + Guid.NewGuid(), pos, partSprite);
+                    GameManager.Score(-3);
+                    GameManager.Score(1);
+                    Destroy(this.gameObject);
                 }
-                
-                Destroy(this.gameObject);
+                else if (this.gameObject.name.StartsWith("rocket_"))
+                {
+                    CreatePart("part_" + Guid.NewGuid(), pos, partSprite);
+                    CreatePart("part_" + Guid.NewGuid(), pos, partSprite);
+                    GameManager.Score(-2);
+                    GameManager.Score(1);
+                    Destroy(this.gameObject);
+                }
+                else if (this.gameObject.name.StartsWith("part_"))
+                {
+                    GameManager.Score(1);
+                    Destroy(this.gameObject);
+                }                
             }
         }
     }
 
-    private GameObject Create(string name, Vector3 position, Sprite sprite)
+    private GameObject CreatePart(string name, Vector3 position, Sprite sprite)
     {
         var part = new GameObject(name);
         part.transform.position = position;
@@ -51,6 +58,8 @@ public class ClickManager : MonoBehaviour
         SetPartVelocity(rigidbody2D, position);
 
         /*BoxCollider2D boxCollider =*/ part.AddComponent<BoxCollider2D>();
+
+        part.AddComponent<ClickManager>();
 
         return part;
     }

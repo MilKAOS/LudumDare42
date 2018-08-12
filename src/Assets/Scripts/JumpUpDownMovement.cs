@@ -6,7 +6,7 @@ public class JumpUpDownMovement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        bottom = GameObject.Find("bottom");
+        bottom = GameObject.Find("Bottom");
     }
 	
 	// Update is called once per frame

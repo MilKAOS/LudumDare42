@@ -17,7 +17,7 @@ public class JumpAroundMovement : MonoBehaviour {
         float yVel = Random.Range(9, 14);
 
         //if (this.transform.position.y < -6)
-        if (this.transform.position.y <= (bottom.transform.position.y + 1))
+        if (this.transform.position.y <= (bottom.transform.position.y + 2))
         {
             xPos = Random.Range(-7, 7);
 
@@ -26,7 +26,7 @@ public class JumpAroundMovement : MonoBehaviour {
             if (xPos > 3)
                 xVel = Random.Range(-6, 1);
 
-            transform.position = new Vector2(xPos, bottom.transform.position.y + 1); // -6);
+            transform.position = new Vector2(xPos, bottom.transform.position.y + 2.1f); // -6);
 
             GetComponent<Rigidbody2D>().velocity = new Vector2(xVel, yVel);
         }

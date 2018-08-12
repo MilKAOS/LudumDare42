@@ -15,10 +15,10 @@ public class JumpUpDownMovement : MonoBehaviour {
         float xPos = Random.Range(-7, 7);
 
         //if (transform.position.y < -6)
-        if (this.transform.position.y <= (bottom.transform.position.y + 1))
+        if (this.transform.position.y <= (bottom.transform.position.y + 2))
         {
             xPos = Random.Range(-7, 7);
-            transform.position = new Vector2(xPos, bottom.transform.position.y + 1); // -6);
+            transform.position = new Vector2(xPos, bottom.transform.position.y + 2.1f); // -6);
 
             GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 10f);
         }

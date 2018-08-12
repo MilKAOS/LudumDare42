@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Sprite rover3Sprite;
     public Sprite rocketSprite;
 
-    private static float secondsBetweenSpawn = 0.5f;
+    private static float secondsBetweenSpawn = 3f;
     private static float elapsedTime = 4.0f;
 
     private static bool isGameStarted = false;
@@ -70,7 +70,9 @@ public class GameManager : MonoBehaviour
     private GameObject CreateObject(int type)
     {       
         var obj = new GameObject(GetName(type));
-        obj.transform.position = new Vector3(Screen.width / 2, 20, 10);
+
+        var xPos = UnityEngine.Random.Range(-7, 7);
+        obj.transform.position = new Vector3(xPos, -6, 0);
 
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
 

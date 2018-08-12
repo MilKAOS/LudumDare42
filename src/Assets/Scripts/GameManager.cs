@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Sprite rover3Sprite;
     public Sprite rocketSprite;
 
-    private static float secondsBetweenSpawn = 3.0f;
+    private static float secondsBetweenSpawn = 0.5f;
     private static float elapsedTime = 4.0f;
 
     private static bool isGameStarted = false;
@@ -71,7 +71,6 @@ public class GameManager : MonoBehaviour
     {       
         var obj = new GameObject(GetName(type));
         obj.transform.position = new Vector3(Screen.width / 2, 20, 10);
-        obj.transform.localScale = new Vector3(0.25f, 0.25f, 1);
 
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
 

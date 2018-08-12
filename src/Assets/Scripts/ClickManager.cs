@@ -70,7 +70,7 @@ public class ClickManager : MonoBehaviour
     {
         var part = new GameObject(name);
         part.transform.position = position;
-        part.transform.localScale = new Vector3(0.1f, 0.1f, 1);
+        //part.transform.localScale = new Vector3(0.1f, 0.1f, 1);
 
         SpriteRenderer renderer = part.AddComponent<SpriteRenderer>();
         renderer.sprite = sprite;

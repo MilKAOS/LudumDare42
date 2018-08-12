@@ -71,37 +71,37 @@ public class GameManager : MonoBehaviour
     {       
         var obj = new GameObject(GetName(type));
 
-        var xPos = UnityEngine.Random.Range(-7, 7);
-        obj.transform.position = new Vector3(xPos, -6, 0);
-
+        var xPos = UnityEngine.Random.Range(-7, 7);        
         SpriteRenderer renderer = obj.AddComponent<SpriteRenderer>();
 
         switch (type)
         {
             case 1: // Rover Opportunity
-                renderer.sprite = rover1Sprite;                
+                renderer.sprite = rover1Sprite;
+                obj.transform.position = new Vector3(xPos, -6, 0);
                 break;
 
             case 2: // Rover Pathfinder
                 renderer.sprite = rover2Sprite;
+                obj.transform.position = new Vector3(xPos, -6, 0);
                 break;
 
             case 3: // Rover Spirit
                 renderer.sprite = rover3Sprite;
+                obj.transform.position = new Vector3(xPos, -6, 0);
                 break;
 
             case 4: // Rocket
                 renderer.sprite = rocketSprite;
+                obj.transform.position = new Vector3(xPos, 15, 0);
                 break;
         }
 
-        int movementType = UnityEngine.Random.Range(1, 3);
-        if (movementType == 1)
-            obj.AddComponent<JumpUpDownMovement>();
-        else
-            obj.AddComponent<JumpAroundMovement>();
+        SetMovement(obj, type);
 
-        obj.AddComponent<Rigidbody2D>();
+        var rigidbody = obj.AddComponent<Rigidbody2D>();
+        rigidbody.gravityScale = 0.5f;
+
         obj.AddComponent<PolygonCollider2D>();
 
         obj.AddComponent<ClickManager>();
@@ -124,5 +124,35 @@ public class GameManager : MonoBehaviour
             default:
                 return "blub";
         }
+    }
+
+
+    private void SetMovement(GameObject obj, int type)
+    {
+        int movementType = UnityEngine.Random.Range(1, 3);
+
+        switch (type)
+        {
+            case 1:
+                if (movementType == 1)
+                    obj.AddComponent<JumpUpDownMovement>();
+                else
+                    obj.AddComponent<JumpAroundMovement>();
+                break;
+            case 2:
+                if (movementType == 1)
+                    obj.AddComponent<JumpUpDownMovement>();
+                else
+                    obj.AddComponent<JumpAroundMovement>();
+                break;
+            case 3:
+                if (movementType == 1)
+                    obj.AddComponent<JumpUpDownMovement>();
+                else
+                    obj.AddComponent<JumpAroundMovement>();
+                break;
+            case 4: // Rocket no special movement
+                break;
+        }        
     }
 }

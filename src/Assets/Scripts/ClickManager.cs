@@ -23,21 +23,21 @@ public class ClickManager : MonoBehaviour
     void Start()
     {
         rover1Sprite = Resources.Load<Sprite>("Sprites/opportunity_front_512");
-        rover1SpriteWreck1 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-1.png");
-        rover1SpriteWreck2 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-2.png");
-        rover1SpriteWreck3 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-3.png");
+        rover1SpriteWreck1 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-1");
+        rover1SpriteWreck2 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-2");
+        rover1SpriteWreck3 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-3");
         rover2Sprite = Resources.Load<Sprite>("Sprites/pathfinder_side_512");
-        rover2SpriteWreck1 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-1.png");
-        rover2SpriteWreck2 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-2.png");
-        rover2SpriteWreck3 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-3.png");
+        rover2SpriteWreck1 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-1");
+        rover2SpriteWreck2 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-2");
+        rover2SpriteWreck3 = Resources.Load<Sprite>("Sprites/pathfinder_side_128_w-3");
         rover3Sprite = Resources.Load<Sprite>("Sprites/spirit_front_512");
-        rover3SpriteWreck1 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-1.png");
-        rover3SpriteWreck2 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-2.png");
-        rover3SpriteWreck3 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-3.png");
+        rover3SpriteWreck1 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-1");
+        rover3SpriteWreck2 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-2");
+        rover3SpriteWreck3 = Resources.Load<Sprite>("Sprites/spirit_front_128_w-3");
         rocketSprite = Resources.Load<Sprite>("Sprites/falcon9_512");
-        rocketSpriteWreck1 = Resources.Load<Sprite>("Sprites/falcon9_128_w-1.png");
-        rocketSpriteWreck2 = Resources.Load<Sprite>("Sprites/falcon9_128_w-2.png");
-        rocketSpriteWreck3 = Resources.Load<Sprite>("Sprites/falcon9_128_w-3.png");
+        rocketSpriteWreck1 = Resources.Load<Sprite>("Sprites/falcon9_128_w-1");
+        rocketSpriteWreck2 = Resources.Load<Sprite>("Sprites/falcon9_128_w-2");
+        rocketSpriteWreck3 = Resources.Load<Sprite>("Sprites/falcon9_128_w-3");
     }
 
     void Update()
@@ -51,33 +51,37 @@ public class ClickManager : MonoBehaviour
 
                 if (this.gameObject.name.StartsWith("rover1_"))
                 {
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover1Sprite);
-                    GameManager.Score(-1);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck1);
+					CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck2);
+					CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck3);
+                    GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                 }
                 else if (this.gameObject.name.StartsWith("rover2_"))
                 {
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover2Sprite);
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover2Sprite);
-                    GameManager.Score(-2);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck1);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck2);
+					CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck3);
+                    GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                 }
                 else if (this.gameObject.name.StartsWith("rover3_"))
                 {
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover3Sprite);
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover3Sprite);
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover3Sprite);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck1);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck2);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck3);
                     GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                 }
                 else if (this.gameObject.name.StartsWith("rocket_"))
                 {
-                    CreatePart("part_" + Guid.NewGuid(), pos, rocketSprite);
-                    CreatePart("part_" + Guid.NewGuid(), pos, rocketSprite);
-                    GameManager.Score(-2);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck1);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck2);
+					CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck3);
+                    GameManager.Score(-3);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                 }

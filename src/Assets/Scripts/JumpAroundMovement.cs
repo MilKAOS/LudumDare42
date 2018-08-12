@@ -14,7 +14,7 @@ public class JumpAroundMovement : MonoBehaviour {
     {
         float xPos = Random.Range(-7, 7);
         float xVel = Random.Range(-4, 4);
-        float yVel = Random.Range(9, 14);
+        float yVel = Random.Range(7, 12);
 
         //if (this.transform.position.y < -6)
         if (this.transform.position.y <= (bottom.transform.position.y + 2))

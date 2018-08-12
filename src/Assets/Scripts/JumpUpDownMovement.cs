@@ -20,7 +20,7 @@ public class JumpUpDownMovement : MonoBehaviour {
             xPos = Random.Range(-7, 7);
             transform.position = new Vector2(xPos, bottom.transform.position.y + 2.1f); // -6);
 
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 10f);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 7f);
         }
     }    
 }

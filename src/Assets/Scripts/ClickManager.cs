@@ -116,7 +116,7 @@ public class ClickManager : MonoBehaviour
     private void SetPartVelocity(Rigidbody2D rigidbody2D, Vector3 pos)
     {
         float xVel = UnityEngine.Random.Range(-4, 4);
-        float yVel = UnityEngine.Random.Range(9, 14);
+        float yVel = UnityEngine.Random.Range(7, 12);
 
         if (pos.x < -3)
             xVel = UnityEngine.Random.Range(-1, 6);

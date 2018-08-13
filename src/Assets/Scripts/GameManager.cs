@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public Sprite rover3Sprite;
     public Sprite rocketSprite;
 
-    private static float secondsBetweenSpawn = 0.5f;
+    private static float secondsBetweenSpawn = 2f;
     private static float elapsedTime = 4.0f;
 
     private static bool isGameStarted = false;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
         GUI.skin = Layout;
         GUI.Label(new Rect(Screen.width / 2 + 375 + 12, 20, 100, 100), "" + PlayerScore);
         
-        if (PlayerScore <= -100)
+        if (PlayerScore <= -50)
         {
             isRunning = false;
             RemoveAllGameObjects();
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             GUI.Label(new Rect(Screen.width / 2 - 150, 100, 2000, 1000), "THE HUMANS WIN, YOU LOSE!");
 
         }
-        else if (isGameStarted && PlayerScore == 0)
+        else if (isGameStarted && PlayerScore >= 50)
         {
             isRunning = false;
             RemoveAllGameObjects();

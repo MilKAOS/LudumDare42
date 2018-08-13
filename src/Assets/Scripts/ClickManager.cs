@@ -46,7 +46,7 @@ public class ClickManager : MonoBehaviour
                     CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck1);
 					CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck2);
 					CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck3);
-                    GameManager.Score(-3);
+                    GameManager.Score(-1);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                     DoExplosion(pos);
@@ -56,7 +56,7 @@ public class ClickManager : MonoBehaviour
                     CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck1);
                     CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck2);
 					CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck3);
-                    GameManager.Score(-3);
+                    GameManager.Score(-1);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                     DoExplosion(pos);
@@ -66,7 +66,7 @@ public class ClickManager : MonoBehaviour
                     CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck1);
                     CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck2);
                     CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck3);
-                    GameManager.Score(-3);
+                    GameManager.Score(-1);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                     DoExplosion(pos);
@@ -76,7 +76,7 @@ public class ClickManager : MonoBehaviour
                     CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck1);
                     CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck2);
 					CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck3);
-                    GameManager.Score(-3);
+                    GameManager.Score(-1);
                     GameManager.Score(1);
                     Destroy(this.gameObject);
                     DoExplosion(pos);

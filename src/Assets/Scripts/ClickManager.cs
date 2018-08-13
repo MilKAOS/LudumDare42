@@ -179,6 +179,6 @@ public class ClickManager : MonoBehaviour
         var effect = Resources.Load<GameObject>(effectName);
         effect.transform.position = pos;
         Instantiate(effect);
-        Destroy(effect, 5f);
+        //Destroy(effect, 5f);
     }
 }

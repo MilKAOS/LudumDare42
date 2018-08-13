@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,10 +12,14 @@ public class GameManager : MonoBehaviour
     public Sprite rover3Sprite;
     public Sprite rocketSprite;
 
-    private static float secondsBetweenSpawn = 3f;
+    private static float secondsBetweenSpawn = 0.5f;
     private static float elapsedTime = 4.0f;
 
     private static bool isGameStarted = false;
+    private static bool isRunning = false;
+
+    public GameObject win;
+    public GameObject loose;
 
     // Use this for initialization
     void Start()
@@ -23,23 +28,52 @@ public class GameManager : MonoBehaviour
         rover2Sprite = Resources.Load<Sprite>("Sprites/pathfinder_side_512");
         rover3Sprite = Resources.Load<Sprite>("Sprites/spirit_front_512");
         rocketSprite = Resources.Load<Sprite>("Sprites/falcon9_512");
+
+        loose = GameObject.Find("loose");
+        win = GameObject.Find("win");
     }
 
     // Update is called once per frame
     void Update()
     {
-        elapsedTime += Time.deltaTime;
-
-        if (elapsedTime > secondsBetweenSpawn)
+        if (isRunning)
         {
-            elapsedTime = 0;
-           
-            int enemyType = UnityEngine.Random.Range(1, 5);
-            CreateObject(enemyType);
-            Score(-1);
+            elapsedTime += Time.deltaTime;
 
-            isGameStarted = true;
+            if (elapsedTime > secondsBetweenSpawn)
+            {
+                elapsedTime = 0;
+
+                int enemyType = UnityEngine.Random.Range(1, 5);
+                CreateObject(enemyType);
+                Score(-1);
+
+                isGameStarted = true;
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {           
+            SceneManager.LoadScene("Menu");
+            SceneManager.UnloadSceneAsync("MarsDefender");
+        }
+    }
+
+    private void Awake()
+    {
+        isGameStarted = false;
+        isRunning = true;
+        PlayerScore = 0;
+    }
+    
+    private void OnDisable()
+    {
+        loose.transform.position = new Vector3(loose.transform.position.x, loose.transform.position.y, 10);
+        win.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, 10);
+
+        isRunning = false;
+        isGameStarted = false;
+        PlayerScore = 0;
     }
 
     void OnGUI()
@@ -49,11 +83,33 @@ public class GameManager : MonoBehaviour
         
         if (PlayerScore <= -100)
         {
-            GUI.Label(new Rect(Screen.width / 2 - 150, 200, 2000, 1000), "HUMANITY WINS, YOU LOSE!");            
-        }        
+            isRunning = false;
+            RemoveAllGameObjects();
+
+            loose.transform.position = new Vector3(loose.transform.position.x, loose.transform.position.y, 0);
+            GUI.Label(new Rect(Screen.width / 2 - 150, 100, 2000, 1000), "THE HUMANS WIN, YOU LOSE!");
+
+        }
         else if (isGameStarted && PlayerScore == 0)
         {
-            GUI.Label(new Rect(Screen.width / 2 - 150, 200, 2000, 1000), "MARS WINS!");
+            isRunning = false;
+            RemoveAllGameObjects();
+
+            win.transform.position = new Vector3(win.transform.position.x, win.transform.position.y, 0);
+            GUI.Label(new Rect(Screen.width / 2 - 150, 430, 2000, 1000), "MARS WINS!");            
+        }
+    }
+
+    private void RemoveAllGameObjects()
+    {
+        var gameObjects = Resources.FindObjectsOfTypeAll(typeof(GameObject));
+        foreach (var go in gameObjects)
+        {
+            if (go.name.StartsWith("rover") || go.name.StartsWith("rocket") || go.name.StartsWith("part"))
+            {
+                //var gameObject = GameObject.Find(go.name);
+                Destroy(go);
+            }
         }
     }
 
@@ -61,10 +117,20 @@ public class GameManager : MonoBehaviour
     {        
         PlayerScore += value;
 
-        //if (PlayerScore1 == 10 || PlayerScore2 == 10)
-        //    ballAudioSource.PlayOneShot(Resources.Load<AudioClip>("win"));
-        //else
-        //    ballAudioSource.PlayOneShot(Resources.Load<AudioClip>("out"));
+        //if (isGameStarted && PlayerScore >= 0)
+        //{            
+        //    //    ballAudioSource.PlayOneShot(Resources.Load<AudioClip>("win"));
+        //}
+        //else if (PlayerScore <= -100)
+        //{
+            
+        //    //    ballAudioSource.PlayOneShot(Resources.Load<AudioClip>("out"));
+        //}
+    }
+
+    public void ResetGame()
+    {
+
     }
 
     private GameObject CreateObject(int type)

@@ -16,6 +16,8 @@ public class ClickManager : MonoBehaviour
     public Sprite rocketSpriteWreck2;
     public Sprite rocketSpriteWreck3;
 
+    private AudioManager audioManager;
+
     void Start()
     {
         rover1SpriteWreck1 = Resources.Load<Sprite>("Sprites/opportunity_front_128_w-1");
@@ -30,6 +32,9 @@ public class ClickManager : MonoBehaviour
         rocketSpriteWreck1 = Resources.Load<Sprite>("Sprites/falcon9_128_w-1");
         rocketSpriteWreck2 = Resources.Load<Sprite>("Sprites/falcon9_128_w-2");
         rocketSpriteWreck3 = Resources.Load<Sprite>("Sprites/falcon9_128_w-3");
+
+        var crosshair = GameObject.Find("Crosshair");
+        audioManager = crosshair.GetComponent<AudioManager>();
     }
 
     void Update()
@@ -43,49 +48,73 @@ public class ClickManager : MonoBehaviour
 
                 if (this.gameObject.name.StartsWith("rover1_"))
                 {
-                    CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck1);
-					CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck2);
-					CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck3);
-                    GameManager.Score(-1);
-                    GameManager.Score(1);
-                    Destroy(this.gameObject);
+                    audioManager.DoAudioShot();
+                    audioManager.DoAudioExplosion();
+
                     DoExplosion(pos);
+                    GameManager.Score(1);
+
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck1);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck2);
+                    CreatePart("part_" + Guid.NewGuid(), pos, rover1SpriteWreck3);
+                    GameManager.Score(-1);
+
+                    Destroy(this.gameObject);
                 }
                 else if (this.gameObject.name.StartsWith("rover2_"))
                 {
+                    audioManager.DoAudioShot();
+                    audioManager.DoAudioExplosion();
+
+                    DoExplosion(pos);
+                    GameManager.Score(1);
+
                     CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck1);
                     CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck2);
 					CreatePart("part_" + Guid.NewGuid(), pos, rover2SpriteWreck3);
                     GameManager.Score(-1);
-                    GameManager.Score(1);
+                                        
                     Destroy(this.gameObject);
-                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("rover3_"))
                 {
+                    audioManager.DoAudioShot();
+                    audioManager.DoAudioExplosion();
+
+                    DoExplosion(pos);
+                    GameManager.Score(1);
+
                     CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck1);
                     CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck2);
                     CreatePart("part_" + Guid.NewGuid(), pos, rover3SpriteWreck3);
                     GameManager.Score(-1);
-                    GameManager.Score(1);
+                                        
                     Destroy(this.gameObject);
-                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("rocket_"))
                 {
+                    audioManager.DoAudioShot();
+                    audioManager.DoAudioExplosion();
+
+                    DoExplosion(pos);
+                    GameManager.Score(1);
+
                     CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck1);
                     CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck2);
 					CreatePart("part_" + Guid.NewGuid(), pos, rocketSpriteWreck3);
                     GameManager.Score(-1);
-                    GameManager.Score(1);
+                    
                     Destroy(this.gameObject);
-                    DoExplosion(pos);
                 }
                 else if (this.gameObject.name.StartsWith("part_"))
                 {
-                    GameManager.Score(1);
-                    Destroy(this.gameObject);
+                    audioManager.DoAudioShot();
+                    audioManager.DoAudioExplosion();
+
                     DoExplosion(pos);
+                    GameManager.Score(1);                    
+                    
+                    Destroy(this.gameObject);
                 }                
             }
         }
@@ -178,7 +207,6 @@ public class ClickManager : MonoBehaviour
 
         var effect = Resources.Load<GameObject>(effectName);
         effect.transform.position = pos;
-        Instantiate(effect);
-        //Destroy(effect, 5f);
-    }
+        Instantiate(effect);        
+    }    
 }

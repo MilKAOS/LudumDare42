@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public GameObject win;
     public GameObject loose;
 
+    private static AudioManager audioManager;
+
     // Use this for initialization
     void Start()
     {        
@@ -31,6 +33,9 @@ public class GameManager : MonoBehaviour
 
         loose = GameObject.Find("loose");
         win = GameObject.Find("win");
+
+        var crosshair = GameObject.Find("Crosshair");
+        audioManager = crosshair.GetComponent<AudioManager>();
     }
 
     // Update is called once per frame
@@ -106,8 +111,7 @@ public class GameManager : MonoBehaviour
         foreach (var go in gameObjects)
         {
             if (go.name.StartsWith("rover") || go.name.StartsWith("rocket") || go.name.StartsWith("part"))
-            {
-                //var gameObject = GameObject.Find(go.name);
+            {                
                 Destroy(go);
             }
         }
@@ -117,20 +121,26 @@ public class GameManager : MonoBehaviour
     {        
         PlayerScore += value;
 
-        //if (isGameStarted && PlayerScore >= 0)
-        //{            
-        //    //    ballAudioSource.PlayOneShot(Resources.Load<AudioClip>("win"));
-        //}
-        //else if (PlayerScore <= -100)
-        //{
-            
-        //    //    ballAudioSource.PlayOneShot(Resources.Load<AudioClip>("out"));
-        //}
-    }
-
-    public void ResetGame()
-    {
-
+        if (PlayerScore == 50)
+        {
+            audioManager.DoPlayAudio("Sounds/win");
+        }
+        else if (PlayerScore == 25)
+        {
+            audioManager.DoPlayAudio("Sounds/taunt25");            
+        }
+        else if (PlayerScore == 0)
+        {
+            audioManager.DoPlayAudio("Sounds/taunt0");            
+        }
+        else if (isGameStarted && PlayerScore == -25)
+        {
+            audioManager.DoPlayAudio("Sounds/tauntNeg25");            
+        }
+        else if (PlayerScore == -50)
+        {
+            audioManager.DoPlayAudio("Sounds/loose");            
+        }
     }
 
     private GameObject CreateObject(int type)
@@ -191,7 +201,6 @@ public class GameManager : MonoBehaviour
                 return "blub";
         }
     }
-
 
     private void SetMovement(GameObject obj, int type)
     {

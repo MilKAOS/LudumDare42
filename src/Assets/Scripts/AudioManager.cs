@@ -52,7 +52,7 @@ public class AudioManager : MonoBehaviour {
 
     private string GetShotSoundName()
     {
-        var rndSound = UnityEngine.Random.Range(0, 4);
+        var rndSound = UnityEngine.Random.Range(0, 8);
         switch (rndSound)
         {
             case 0:
@@ -63,6 +63,14 @@ public class AudioManager : MonoBehaviour {
                 return "Sounds/shot03";
             case 3:
                 return "Sounds/shot04";
+            case 4:
+                return "Sounds/shot05";
+            case 5:
+                return "Sounds/shot06";
+            case 6:
+                return "Sounds/shot07";
+            case 7:
+                return "Sounds/shot08";
             default:
                 throw new System.ArgumentException("sound missing");
         }

@@ -117,6 +117,9 @@ public class ClickManager : MonoBehaviour
                     Destroy(this.gameObject);
                 }                
             }
+			else {
+				audioManager.DoAudioShot();
+			}
         }
     }
 

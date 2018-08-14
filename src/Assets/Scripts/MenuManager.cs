@@ -6,6 +6,7 @@ public class MenuManager : MonoBehaviour {
 
     public void ToGame()
     {
+		Cursor.visible = false;
         SceneManager.LoadScene("MarsDefender");
     }
 

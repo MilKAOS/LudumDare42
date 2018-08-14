@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
-        {           
+        {
+            Cursor.visible = true;
             SceneManager.LoadScene("Menu");
             SceneManager.UnloadSceneAsync("MarsDefender");
         }

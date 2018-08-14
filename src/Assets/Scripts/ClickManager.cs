@@ -48,7 +48,6 @@ public class ClickManager : MonoBehaviour
 
                 if (this.gameObject.name.StartsWith("rover1_"))
                 {
-                    audioManager.DoAudioShot();
                     audioManager.DoAudioExplosion();
 
                     DoExplosion(pos);
@@ -63,7 +62,6 @@ public class ClickManager : MonoBehaviour
                 }
                 else if (this.gameObject.name.StartsWith("rover2_"))
                 {
-                    audioManager.DoAudioShot();
                     audioManager.DoAudioExplosion();
 
                     DoExplosion(pos);
@@ -78,7 +76,6 @@ public class ClickManager : MonoBehaviour
                 }
                 else if (this.gameObject.name.StartsWith("rover3_"))
                 {
-                    audioManager.DoAudioShot();
                     audioManager.DoAudioExplosion();
 
                     DoExplosion(pos);
@@ -93,7 +90,6 @@ public class ClickManager : MonoBehaviour
                 }
                 else if (this.gameObject.name.StartsWith("rocket_"))
                 {
-                    audioManager.DoAudioShot();
                     audioManager.DoAudioExplosion();
 
                     DoExplosion(pos);
@@ -108,7 +104,6 @@ public class ClickManager : MonoBehaviour
                 }
                 else if (this.gameObject.name.StartsWith("part_"))
                 {
-                    audioManager.DoAudioShot();
                     audioManager.DoAudioExplosion();
 
                     DoExplosion(pos);
@@ -117,9 +112,6 @@ public class ClickManager : MonoBehaviour
                     Destroy(this.gameObject);
                 }                
             }
-			else {
-				audioManager.DoAudioShot();
-			}
         }
     }
 
